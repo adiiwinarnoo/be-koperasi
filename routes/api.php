@@ -27,6 +27,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/upload-product', [ProductController::class, 'uploadProduct']);
 Route::post('/pengajuan', [PinjamanController::class, 'pengajuanPinjaman']);
 
+
+
 Route::get('/stock-masuk/{bulan}/{tahun}', [ProductController::class, 'getStockMasukMonth']);
 Route::get('/stock-tahun/{tahun}', [ProductController::class, 'getStockMasukYear']);
 Route::get('/out-stock-month/{bulan}/{tahun}', [ProductController::class, 'getOutStockMonth']);
