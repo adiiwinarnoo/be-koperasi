@@ -37,13 +37,13 @@ class ProductController extends Controller
                 'message' => 'kode barang sudah terdaftar',
             ],401);
         } else {
-            $fotoProduct = $request->foto_product; 
-            $fotoProduct = str_replace('data:image/png;base64,', '', $fotoProduct);
-            $fotoProduct = str_replace(' ', '+', $fotoProduct);
-            $suratx = md5(uniqid(rand(), true));
-            $nameFotoProduct = $suratx.'.'.'jpg';
+            // $fotoProduct = $request->foto_product; 
+            // $fotoProduct = str_replace('data:image/png;base64,', '', $fotoProduct);
+            // $fotoProduct = str_replace(' ', '+', $fotoProduct);
+            // $suratx = md5(uniqid(rand(), true));
+            // $nameFotoProduct = $suratx.'.'.'jpg';
 
-            Storage::disk('product')->put($nameFotoProduct, base64_decode($fotoProduct));
+            // Storage::disk('product')->put($nameFotoProduct, base64_decode($fotoProduct));
 
             $product = ModelProduct::create([
                 'code_barang' => $request->input('code_barang'),
