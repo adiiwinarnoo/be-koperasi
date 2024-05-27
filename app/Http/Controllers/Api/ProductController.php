@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Pinjaman;
+use App\Models\ModelProduct;
+use App\Models\ModelPinjaman;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +29,7 @@ class ProductController extends Controller
             ],401);
         }
 
-        $product = Product::where('code_barang', $request->code_barang)->first();
+        $product = ModelProduct::where('code_barang', $request->code_barang)->first();
 
         if ($product) {
             return response()->json([
@@ -45,7 +45,7 @@ class ProductController extends Controller
 
             Storage::disk('product')->put($nameFotoProduct, base64_decode($fotoProduct));
 
-            $product = Product::create([
+            $product = ModelProduct::create([
                 'code_barang' => $request->input('code_barang'),
                 'nama_product' => $request->input('nama_product'),
                 'harga_jual' => $request->input('harga_jual'),
@@ -69,7 +69,7 @@ class ProductController extends Controller
 
     public function getStockMasukMonth($bulan, $tahun){
 
-        $stockBulan = Product::whereMonth('created_at',$$bulan)
+        $stockBulan = ModelProduct::whereMonth('created_at',$$bulan)
                         ->whereYear('created_at', $tahun)
                         ->sum('stock_masuk');
 
@@ -85,7 +85,7 @@ class ProductController extends Controller
 
         $currentYear = date('Y');
 
-        $stockTahun = Product::whereYear('created_at', $tahun)
+        $stockTahun = ModelProduct::whereYear('created_at', $tahun)
                         ->sum('stock_masuk');
 
        return response()->json([
@@ -101,7 +101,7 @@ class ProductController extends Controller
         $currentMonth = date('m');
         $currentYear = date('Y');
 
-        $stockBulan = Pinjaman::whereMonth('created_at',$bulan)
+        $stockBulan = ModelPinjaman::whereMonth('created_at',$bulan)
                         ->whereYear('created_at', $tahun)
                         ->sum('jumlah_pinjam');
 
@@ -117,7 +117,7 @@ class ProductController extends Controller
 
         $currentYear = date('Y');
 
-        $stockYear = Pinjaman::whereYear('created_at', $tahun)
+        $stockYear = ModelPinjaman::whereYear('created_at', $tahun)
                         ->sum('jumlah_pinjam');
 
        return response()->json([
@@ -129,7 +129,7 @@ class ProductController extends Controller
     }
 
     public function getAllProduct() {
-        $product = Product::all();
+        $product = ModelProuct::all();
 
         return response()->json([
             'status' => 1,

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pinjaman;
-use App\Models\Product;
+use App\Models\ModelPinjaman;
+use App\Models\ModelProduct;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -35,16 +35,16 @@ class PinjamanController extends Controller
 
         $product = Product::where('id', $request->id_product)->first();
 
-        $hargaProduct = Pinjaman::where('nik_karyawan', $request->nik_karyawan)
+        $hargaProduct = ModelPinjaman::where('nik_karyawan', $request->nik_karyawan)
                         ->where('nama_karyawan', $request->nama_karyawan)
                         ->whereMonth('created_at',$currentMonth)
                         ->whereYear('created_at', $currentYear)
                         ->sum('harga');
 
-        $outStockProduct = Pinjaman::where('id_product', $request->id_product)
+        $outStockProduct = ModelPinjaman::where('id_product', $request->id_product)
                         ->sum('jumlah_pinjam');
         
-        $stockProduct = Product::where('id', $request->id_product)
+        $stockProduct = ModelProduct::where('id', $request->id_product)
                         ->pluck('stock_masuk')
                         ->first();
 
@@ -70,7 +70,7 @@ class PinjamanController extends Controller
                     'message' => 'Gagal, Stock tidak Sesuai',
                 ],400);
             }else{
-                $pinjaman = Pinjaman::create([
+                $pinjaman = ModelPinjaman::create([
                     'id_product' => $request->input('id_product'),
                     'nik_karyawan' => $request->input('nik_karyawan'),
                     'nama_karyawan' => $request->input('nama_karyawan'),
@@ -92,7 +92,7 @@ class PinjamanController extends Controller
     }
 
     public function getAllPinjaman($tanggal) {
-        $product = Pinjaman::whereDate("created_at",$tanggal)->get();
+        $product = ModelPinjaman::whereDate("created_at",$tanggal)->get();
 
         return response()->json([
             'status' => 1,

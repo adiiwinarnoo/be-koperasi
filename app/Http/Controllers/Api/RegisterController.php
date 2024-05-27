@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Kasir;
+use App\Models\ModelKasir;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,7 +27,7 @@ class RegisterController extends Controller
             ],401);
         }
 
-        $user = Kasir::where('nomor_induk', $request->nomor_induk)->first();
+        $user = ModelKasir::where('nomor_induk', $request->nomor_induk)->first();
 
         if ($user) {
             return response()->json([
@@ -35,7 +35,7 @@ class RegisterController extends Controller
                 'message' => 'nomor induk sudah terdaftar',
             ],401);
         } else {
-            $user = Kasir::create([
+            $user = ModelKasir::create([
                 'nomor_induk' => $request->input('nomor_induk'),
                 'nama_admin' => $request->input('nama_admin'),
                 'jabatan' => $request->input('jabatan'),
