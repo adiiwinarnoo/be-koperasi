@@ -33,7 +33,7 @@ class PinjamanController extends Controller
             ],401);
         }
 
-        $product = Product::where('id', $request->id_product)->first();
+        $product = ModelProduct::where('id', $request->id_product)->first();
 
         $hargaProduct = ModelPinjaman::where('nik_karyawan', $request->nik_karyawan)
                         ->where('nama_karyawan', $request->nama_karyawan)
