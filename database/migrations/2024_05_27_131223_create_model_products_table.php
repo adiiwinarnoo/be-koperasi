@@ -18,7 +18,7 @@ class CreateModelProductsTable extends Migration
             $table->string('code_barang');
             $table->string('nama_product');
             $table->integer('harga_jual');
-            $table->integer('harga_masuk');
+            $table->integer('stock_masuk');
             $table->timestamps();
         });
     }
