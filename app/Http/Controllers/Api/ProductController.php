@@ -108,7 +108,7 @@ class ProductController extends Controller
         return response()->json([
             'status' => 1,
             'message' => 'Success',
-            'stock_masuk' => $stockBulan
+            'stock_keluar' => $stockBulan
         ],200);
 
     }
@@ -117,13 +117,15 @@ class ProductController extends Controller
 
         $currentYear = date('Y');
 
+        var_dump($tahun);
+
         $stockYear = ModelPinjaman::whereYear('created_at', $tahun)
                         ->sum('jumlah_pinjam');
 
        return response()->json([
             'status' => 1,
             'message' => 'Success',
-            'stock_masuk' => $stockYear
+            'stock_keluar' => $stockYear
         ],200);
 
     }
