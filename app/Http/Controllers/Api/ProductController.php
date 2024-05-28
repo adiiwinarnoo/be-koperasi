@@ -117,8 +117,6 @@ class ProductController extends Controller
 
         $currentYear = date('Y');
 
-        var_dump($tahun);
-
         $stockYear = ModelPinjaman::whereYear('created_at', $tahun)
                         ->sum('jumlah_pinjam');
 
