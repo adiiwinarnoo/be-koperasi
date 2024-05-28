@@ -69,7 +69,7 @@ class ProductController extends Controller
 
     public function getStockMasukMonth($bulan, $tahun){
 
-        $stockBulan = ModelProduct::whereMonth('created_at',$$bulan)
+        $stockBulan = ModelProduct::whereMonth('created_at',$bulan)
                         ->whereYear('created_at', $tahun)
                         ->sum('stock_masuk');
 
