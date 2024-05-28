@@ -129,7 +129,7 @@ class ProductController extends Controller
     }
 
     public function getAllProduct() {
-        $product = ModelProuct::all();
+        $product = ModelProduct::all();
 
         return response()->json([
             'status' => 1,
