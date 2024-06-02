@@ -58,7 +58,7 @@ class PinjamanController extends Controller
             ],404);
         }
 
-        if($hargaProduct > 500000){
+        if($hargaProduct >= 500000){
             return response()->json([
                 'status' => 0,
                 'message' => 'Gagal, Tagihan anda Bulan ini lebih dari 500.000',
