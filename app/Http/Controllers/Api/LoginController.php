@@ -28,7 +28,8 @@ class LoginController extends Controller
         if(!$user) {
             return response()->json([
                 'status' => 0,
-                'message' => 'Nomor Induk Tidak Terdaftar'
+                'message' => 'Nomor Induk Tidak Terdaftar',
+                'dataLogin' => null
             ], 401);
         }
         
